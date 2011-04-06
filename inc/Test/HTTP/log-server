@@ -16,9 +16,10 @@ my $d = HTTP::Daemon->new(
     # As much as binding to localhost is desired,
     # HTTP::Deamon doesn't return http://localhost:.../.
     # This causes the tests to fail of many machines.
-    #LocalAddr => 'localhost',
+    LocalAddr => 'localhost',
 ) or die;
-print $d->url, "\n";
+printf "http://localhost:%d/\n", $d->sockport;
+#print $d->url, "\n";
 
 my ($filename,$logfile) = @ARGV[0,1];
 if ($filename) {
